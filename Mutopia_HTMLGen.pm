@@ -385,40 +385,26 @@ sub ALL_PIECES {
  return $html;
 }
 
+sub BANDWIDTH() {
+    my $html = <<___EOB; $html =~ s/^ *//gm; # trim leading whitespace 
+    <p>Save our bandwidth - use a mirror!<br />
+    <a href="http://www.mutopiaproject.org/" title="Main site in Canada"><b>Canada</b></a> |
+    <a href="http://eremita.di.uminho.pt/mutopia/" title="Mirror in Portugal">Portugal</a>
+    </p>
+___EOB
+    return $html;
+}
+
+
 sub HEAD($) {
-    # returns nice index, to go at top of document.  Puts main body
-    # of document in a table.  Must be used with TAIL.
-
     my $dontlinkto = shift;
-    
     my $html = <<____EOH; $html =~ s/^ *//gm; # trim leading whitespace 
-    <div class="header_section">
-
-    <table class="invisible"><tr>
+    <table class="masthead">
+    <tr>
     <td><img src="images/logo-small.png" alt="Mutopia Project Logo" width="186" height="61" /></td>
-
     <td style="font-weight: bold;">All music in the Mutopia Project is free to download, print out, perform and distribute.<br />
-
-[[ NUMBER_OF_PIECES() ]]
-    pieces of music are now available.</td>
-
-    <td>
-      Save our bandwidth - use a mirror!<br />
-      <!--<a href="http://www.ibiblio.org/mutopia/" title="Mirror in the USA">USA</a> |-->
-      <a href="http://www.mutopiaproject.org/" title="Main site in Canada"><b>Canada</b></a> |
-      <!-- <a href="http://mutopia.planetmirror.com/" title="Mirror in Australia">Australia</a> | -->
-
-      <!-- <a href="http://gd.tuwien.ac.at/art/Mutopia/" title="Mirror in Austria">Austria</a> | -->
-      <a href="http://eremita.di.uminho.pt/mutopia/" title="Mirror in Portugal">Portugal</a><!--<br />
-      <a href="ftp://ibiblio.org/pub/multimedia/mutopia/" title="FTP in USA">Mutopia Archive via FTP</a>-->
-    </td>
+    [[ NUMBER_OF_PIECES() ]] pieces of music are now available.</td>
     </tr>
-
-    <tr><td colspan="3" style="padding: 5px; border-top: 1px solid black;">
-    [[ INDEX("$dontlinkto") ]]
-    </td></tr></table>
-
-    [[ BREAK() ]]
 ____EOH
     return $html;
 }
@@ -462,38 +448,39 @@ ____EOH
     return $html;
 }
 
+
 sub INDEXHEAD {
-    # I thought I'd stick this in here rather than in index.html-in as
-    # we might want to put it differently in the CD version. Possibly.
-    # I don't know - feel free to move it back!
-    my $html = <<____EOH; $html =~ s/^ *//gm; # trim leading whitespace
-<div class="index_rhs_cont">
-<div class="index_rhs">
+    my @composers = ("BachJS", "Bach",
+                     "BeethovenLv", "Beethoven",
+                     "ChopinFF", "Chopin",
+                     "DiabelliA", "Diabelli",
+                     "HandelGF", "Handel",
+                     "MozartWA", "Mozart",
+                     "SchumannR", "Schumann",
+                     "SorF", "Sor"
+        );
+    my $sb_1 = "<p><b>Browse by composer:</b>";
+    my $comma = "";
+    for (my $comp = 0; $comp < (@composers); $comp += 2) {
+        $sb_1 .= "$comma <a href=\"cgibin/make-table.cgi?Composer="
+            . $composers[$comp] . "\">"
+            . $composers[$comp+1] . "</a>";
+        $comma = ",";
+    }
+    $sb_1 .= " <a href=\"browse.html#byComposer\">[Full list of composers]</a></p>";
 
-  <form action="cgibin/make-table.cgi" method="get">
-    <p style="text-align: center;">
-      <input type="text" name="searchingfor" size="20" />
-      <input type="submit" value="Search" />
-    </p>
-  </form>
+    $comma = "";
+    $sb_1 .= "<p><b>Browse by instrument:</b>";
+    my @instruments = ("Piano", "Vocal", "Organ", "Violin", "Guitar", "Orchestra");
+    foreach my $instr (@instruments) {
+        $sb_1 .= "$comma <a href=\"cgibin/make-table.cgi?Instrument=$instr\">$instr</a>";
+        $comma = ",";
+    }
+    $sb_1 .= " <a href=\"browse.html#byInstrument\">[Full list of instruments]</a></p>";
 
-  <p><b>Browse by composer:</b> <a href="cgibin/make-table.cgi?Composer=BachJS">Bach</a>, <a href="cgibin/make-table.cgi?Composer=BeethovenLv">Beethoven</a>, <a href="cgibin/make-table.cgi?Composer=ChopinFF">Chopin</a>, <a href="cgibin/make-table.cgi?Composer=DiabelliA">Diabelli</a>, <a href="cgibin/make-table.cgi?Composer=HandelGF">Handel</a>, <a href="cgibin/make-table.cgi?Composer=MozartWA">Mozart</a>, <a href="cgibin/make-table.cgi?Composer=SchumannR">Schumann</a>, <a href="cgibin/make-table.cgi?Composer=SorF">Sor</a>. <a href="browse.html#byComposer">[Full list of composers]</a></p>
-
-  <p><b>Browse by instrument:</b> <a href="cgibin/make-table.cgi?Instrument=Piano">Piano</a>, <a href="cgibin/make-table.cgi?Instrument=Voice">Vocal</a>, <a href="cgibin/make-table.cgi?Instrument=Organ">Organ</a>, <a href="cgibin/make-table.cgi?Instrument=Violin">Violin</a>, <a href="cgibin/make-table.cgi?Instrument=Guitar">Guitar</a>, <a href="cgibin/make-table.cgi?Instrument=Orchestra">Orchestra</a>. <a href="browse.html#byInstrument">[Full list of instruments]</a></p>
-
-  <p style="text-align: center;"><b><a href="piece-list.html">List all music</a></b></p>
-</div>
-<div class="index_rhs">
-  <h4 style="text-align: center;">Latest additions [<a href="latestadditions.html">More...</a>]</h4>
-  <p>
-    [[ LATEST_ADDITIONS(8) ]]
-  </p>
-</div>
-</div>
-       
-____EOH
-    return $html;
+    return $sb_1;
 }
+
 
 sub INDEXHEAD_DE {
     my $html = <<____EOH; $html =~ s/^ *//gm; # trim leading whitespace
@@ -589,28 +576,25 @@ ____EOH
 sub INDEX($) {
     my $dontlinkto = shift;
     my $html = "";
-    my $currpage = 0;
-    
     my @pages = ("index", "Home",
-                 "browse", "Browse the Archive",
-                 "advsearch", "Advanced Search",
-                 "legal", "License Details",
-                 "contribute", "How to Contribute",
-                 "projects", "In Progress",
-                 "contact", "Contact and Discussion");
+                 "browse", "Browse",
+                 "advsearch", "Search",
+                 "legal", "Licensing",
+                 "contribute", "Contribute",
+                 "projects", "In-Progress",
+                 "contact", "Contact");
 
     # We don't want the current page to be made a link
-    for($currpage = 0; $currpage < (@pages); $currpage += 2) {
-       if ($pages[$currpage] eq $dontlinkto) {
-          $html = $html . $pages[$currpage+1];
-       } else {
-          $html = $html . "<a href=\"" . $pages[$currpage] . ".html\">" .
-             $pages[$currpage+1] . "</a>";
-       }
-       
-    # The last link on the line doesn't want a "|" after it; the rest do
-       if ($currpage != (@pages) - 2) { $html = $html . " |\n" }
-          else { $html = $html . "\n" }
+    for (my $currpage = 0; $currpage < (@pages); $currpage += 2) {
+        my $ref = "#";
+        if ($pages[$currpage] eq $dontlinkto) {
+            $html .= "<li class=\"active\">";
+        } else {
+            $html .= "<li>";
+            $ref = $pages[$currpage] . ".html";
+        }
+        $html .= "<a href=\"$ref\">"
+            . $pages[$currpage+1] . "</a></li>\n";
     }
 
     return $html;

@@ -1,38 +1,128 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Free, open, sheet music for the world.">
+    <meta name="author" content="Mutopia Project contributors">
+    <link rel="icon" href="favicon.ico">
+    <link rel="alternate" title="Mutopia RSS" href="http://www.mutopiaproject.org/latestadditions.rss" type="application/rss+xml" />
 
-<head>
-<title>The Mutopia Project</title>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<link type="text/css" rel="stylesheet" href="mutopia.css" />
-<link rel="alternate" title="Mutopia RSS" href="http://www.mutopiaproject.org/latestadditions.rss" type="application/rss+xml" />
-</head>
-<body>
+    <title>The Mutopia Project</title>
 
-[[ HEAD("index") ]]
-[[ INDEXHEAD() ]]
+    <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
 
-<h2>The Mutopia Project: Free sheet music for everyone</h2>
+    <!-- Custom styles for this template -->
+    <link href="css/mutopia.css" rel="stylesheet">
+    <script src="assets/js/ie-emulation-modes-warning.js"></script>
 
-<h3>Classical and Contemporary Music</h3>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
 
-<p>The Mutopia Project offers sheet music editions of classical music for free download. These are based on editions in the public domain, and include works by Bach, Beethoven, Chopin, Handel, Mozart, and many others. A team of volunteers are involved in typesetting the music by computer using the <a href="http://lilypond.org">LilyPond</a> software. Why not join them?! See the <a href="contribute.html">page on how to contribute</a> for more information.</p>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html"><img src="images/mutopia-ico-24x24.png" /></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            [[ INDEX("index") ]]
+          </ul>
+        </div> <!-- .navbar-collapse -->
+      </div>
+    </nav>
 
-<p>We also host a growing number of modern editions, arrangements and new music. The respective editors, arrangers and composers have chosen to make these works freely available.</p>
+    <div class="jumbotron">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3">
+            <img src="images/mutopia-logo.svg" alt="Mutopia Project Logo" width="260" height="68" />
+          </div>
+          <div class="col-sm-4 col-sm-offset-1 text-center">
+            <b>All music in the Mutopia Project is free to download, print out, perform and distribute.<br />
+              [[ NUMBER_OF_PIECES() ]] pieces of music are now available.</b>
+          </div>
+          <div class="col-sm-4 text-center">
+            Save our bandwidth - use a mirror!<br />
+            <a href="http://www.mutopiaproject.org/" title="Main site in Canada"><b>Canada</b></a> |
+            <a href="http://eremita.di.uminho.pt/mutopia/" title="Mirror in Portugal">Portugal</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<hr />
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8">
+          <h2>The Mutopia Project: Free sheet music for everyone</h2>
+          <h3>Classical and Contemporary Music</h3>
 
-<h3>Usage of the Music &nbsp; &nbsp; <a href="http://creativecommons.org/"><img src="images/cc.primary.srr.gif" alt="CC: Some rights reserved" class="noborder" width="88" height="31" /></a></h3>
+          <p>The Mutopia Project offers sheet music editions of classical music for free download. These are based on editions in the public domain, and include works by Bach, Beethoven, Chopin, Handel, Mozart, and many others. A team of volunteers are involved in typesetting the music by computer using the <a href="http://lilypond.org">LilyPond</a> software. Why not join them?! See the <a href="contribute.html">page on how to contribute</a> for more information.</p>
 
-<p>All of the music on Mutopia may be freely downloaded, printed, copied, distributed, modified, performed and recorded. Music is supplied as PDF files for easy printing on either A4 or US Letter paper. The LilyPond source files are also available, which allow you to make your own editions based on ours. Computer-generated audio previews of the music are available as MIDI files, to give you a rough idea of what the music sounds like.</p>
+          <p>We also host a growing number of modern editions, arrangements and new music. The respective editors, arrangers and composers have chosen to make these works freely available.</p>
 
-<p>Most of our music is distributed under <a href="http://creativecommons.org/">Creative Commons</a> licenses. Each piece clearly lists what license it is distributed under. For precise details of what each license permits, see the <a href="legal.html">license details page</a>.</p>
+          <hr />
 
-<br style="clear: right;" />&nbsp; <!-- Unpleasant hack -->
+          <h3>Usage of the Music &nbsp; &nbsp; <a href="http://creativecommons.org/"><img src="images/cc.primary.srr.gif" alt="CC: Some rights reserved" class="noborder" width="88" height="31" /></a></h3>
 
-[[ TAIL("index") ]]
+          <p>All of the music on Mutopia may be freely downloaded, printed, copied, distributed, modified, performed and recorded. Music is supplied as PDF files for easy printing on either A4 or US Letter paper. The LilyPond source files are also available, which allow you to make your own editions based on ours. Computer-generated audio previews of the music are available as MIDI files, to give you a rough idea of what the music sounds like.</p>
 
-</body>
+          <p>Most of our music is distributed
+            under <a href="http://creativecommons.org/">Creative Commons</a> licenses. Each piece clearly lists what license it is distributed under. For precise details of what each license permits, see the <a href="legal.html">license details page</a>.</p>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="sidebar-module sidebar-module-inset">
+            <form class="form-inline" action="cgibin/make-table.cgi" method="get">
+              <div class="form-group">
+                <input class="form-control" type="text" name="searchingfor"/>
+                <button type="submit" value="Search" class="btn btn-default">Search</button>
+              </div>
+            </form>
+            [[ INDEXHEAD() ]]
+            <p class="text-center"><a class="btn btn-primary btn-sm" href="piece-list.html" role="button">List all music &raquo;</a></p>
+          </div>
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>Latest additions [<a href="latestadditions.html">More...</a>]</h4>
+            <p>
+              [[ LATEST_ADDITIONS(8) ]]
+            </p>
+          </div>
+        </div>
+
+      </div> <!-- .row -->
+    </div> <!-- .container -->
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-center"><u>Disclaimer:</u><br />
+          <small>The Mutopia Project is run by volunteers, and the material within it is provided
+            "as-is". NO WARRANTY of any kind is made, including fitness
+            for any particular purpose.<br />No claim is made as to the accuracy or the
+            factual, editorial or musical correctness of any of the material
+            provided here.</small></p>
+      </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+
+  </body>
 </html>
 
