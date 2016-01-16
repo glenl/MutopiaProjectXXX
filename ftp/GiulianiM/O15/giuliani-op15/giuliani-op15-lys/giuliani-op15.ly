@@ -24,6 +24,7 @@
 }
 
 \layout {
+    indent = 2.8 \cm
   \context {
     \Voice
     % spanners are used throughout for fret position
@@ -40,14 +41,14 @@
 dolce = \markup{\italic "dolce"}
 pf = #(make-dynamic-script "pf")
 apiacere = \markup{\small\italic "a piacere"}
-mbreak = {\break}
+mbreak = { \break }
 
-%{ 
+%{
 \include "sonata.ly"
 \score {
   <<
     \new Staff = "Sonata" \with {
-      instrumentName = #"Sonata"
+      instrumentName = \markup{\smallCaps "Sonata"}
       midiInstrument = #"acoustic guitar (nylon)"
       \mergeDifferentlyDottedOn
       \mergeDifferentlyHeadedOn
@@ -89,9 +90,7 @@ mbreak = {\break}
       \context Voice = "lowerVoice" \lowerVoice
     >>
   >>
-  \layout {
-    indent = 3.0 \cm
-  }
+  \layout { }
   \midi { \tempo 4 = 94 }
 }
 %{
